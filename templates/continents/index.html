@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>This are my continents</h1>
+<ul>
+{% for continent in all_continents %}
+ <li>{{continent.name}}</li>   
+{% endfor %}
+</ul>
+
+{% endblock %}

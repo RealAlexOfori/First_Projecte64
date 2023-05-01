@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="/countries" method="post">
+    <label for="country">Country:</label>
+    <input type="text" name="name" id="country" placeholder="Enter the country" /><br />
+    <!-- Needs another input that which has the different options for country -->
+    <label for="country">Continent:</label>
+    <select name="continent_id" id="continent_id">
+
+      {% for continent in all_continents %}  
+        <option value="{{ continent.id }}">{{ continent.name }}</option>
+      {% endfor %}
+
+    </select>
+     <!-- <select name="country_id" id="country_id">
+  <option value="Ghana">Ghana</option>
+  <option value="France">France</option>
+  <option value="Isreal">Isreal</option>
+  <option value="Egypt">Egypt</option>
+  <option value="Egypt">Germany</option>
+  <option value="Egypt">United Kingdom</option>
+     </select> -->
+    
+   <input type="submit" value="Add Country" />
+
+  </form>
+<h1>This are my countries</h1>
+<ul>
+{% for country in all_countries %}
+ <li><a href="/countries/{{country.id}}/edit">{{country.name}}</a></li>   
+{% endfor %}
+</ul>
+
+{% endblock %}

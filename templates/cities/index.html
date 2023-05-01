@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <form action="/cities" method="post">
+      <label for="city">City:</label>
+      <input type="text" name="name" id="city" placeholder="Enter the city" /><br />
+      <!-- Needs another input that which has the different options for country -->
+      <label for="country">Country:</label>
+      <select name="country_id" id="country_id">
+  
+        {% for country in all_countries %}  
+          <option value="{{ country.id }}">{{ country.name }}</option>
+        {% endfor %}
+  
+      </select>
+       <!-- <select name="country_id" id="country_id">
+    <option value="Ghana">Ghana</option>
+    <option value="France">France</option>
+    <option value="Isreal">Isreal</option>
+    <option value="Egypt">Egypt</option>
+    <option value="Egypt">Germany</option>
+    <option value="Egypt">United Kingdom</option>
+       </select> -->
+      <label for="visited">Visited:</label>
+      <input type="checkbox" id="visited" name="visited" value="visited">
+     <input type="submit" value="Add city" />
+  
+    </form>
+  
+    <form action="/cities/<id>/delete" method="post">
+      <label for="city_id">City to remove:</label>
+      <select name="city_id" id="city_id">
+  
+        {% for city in all_cities %}  
+          <option value="{{ city.id }}">{{ city.name }}</option>
+        {% endfor %}
+  
+      </select>
+      
+      <input type="submit" value="Remove city" id="idremove" />
+     </form>
+     <!-- </div>
+     {% for city in all_cities %}  
+  <div>
+    <p>{{city.name}}, {{city.visited}} </p>
+  </div>
+  {% endfor %} -->
+     
+    {% endblock %}

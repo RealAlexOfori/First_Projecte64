@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+{% for visit in all_visits %}  
+  <div>
+    <p>{{visit.city.name}}, {{visit.visited}} </p>
+  </div>
+  {% endfor %}
+  {% endblock %}
+
+  <!-- {% for city in all_cities %}  
+  <div>
+    <p>{{city.name}}, {{city.visited}} </p>
+  </div>
+  {% endfor %} -->
+
+    
+  
