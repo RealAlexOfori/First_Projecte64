@@ -17,7 +17,8 @@ countries_blueprint = Blueprint("countries", __name__)
 @countries_blueprint.route("/countries")
 def countries():
     countries = country_repo.select_all()
-    return render_template("countries/index.html", all_countries = countries)
+    continents = continent_repo.select_all()
+    return render_template("countries/index.html", all_countries = countries, all_continents = continents )
 
 @countries_blueprint.route("/countries/new")
 def new_country():

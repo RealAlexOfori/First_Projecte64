@@ -5,6 +5,7 @@ import repositories.visit_repository as visit_repo
 import repositories.city_repository as city_repo
 
 
+
 from flask import Blueprint
 
 visits_blueprint = Blueprint("visits", __name__)
@@ -27,7 +28,10 @@ def new_visit():
 def create_visit():
     city_id = request.form['city_id']
     city = city_repo.select(city_id)
-    visit = Visit(city)
+    #I put a new visit code below
+    visited = request.form['visited']
+    visit_date = request.form['visit_date']
+    visit = Visit(city, visited, visit_date)
     visit_repo.save(visit)
     return redirect('/visits')
 

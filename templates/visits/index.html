@@ -2,7 +2,7 @@
 {% block content %}
 {% for visit in all_visits %}  
   <div>
-    <p>{{visit.city.name}}, {{visit.visited}} </p>
+    <p>{{visit.city.name}}, {{visit.visited}}, {{visit.visit_date}} </p>
   </div>
   {% endfor %}
   {% endblock %}

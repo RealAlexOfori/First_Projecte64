@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect
 from models.city import City
+from models.visit import Visit 
 
 import repositories.city_repository as city_repo
 import repositories.country_repository as country_repo
+import repositories.visit_repository as visit_repo
 
 
 
@@ -33,6 +35,12 @@ def create_city():
      visited   = request.form.get('visited') == 'visited'
      city = City(city_name, country, visited)
      city_repo.save(city)
+    #  make a visit for this city and save it
+    # have a city already + visited + make up date
+     visit_date = request.form['visit_date']
+     visit = Visit(city, visited, visit_date)
+     visit_repo.save(visit)
+
      return redirect('/cities')
 
 
@@ -57,7 +65,8 @@ def edit_city(id):
 #     city_repo.update(city)
 #     return redirect('/cities')
 
-@cities_blueprint.route("/cities/<id>/delete", methods=['POST'])
-def delete_city(id):
-    city_repo.delete(id)
-    return redirect('/cities')
+@cities_blueprint.route("/cities/delete_one", methods=['POST'])
+def delete_city():
+    city_id = request.form['city_id']
+    city_repo.delete(city_id)
+    return redirect('/cities')  
