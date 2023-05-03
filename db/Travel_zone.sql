@@ -27,7 +27,7 @@ CREATE TABLE visits (
     id SERIAL PRIMARY KEY,
     city_id INT NOT NULL REFERENCES cities(id) ON DELETE CASCADE,
     visited BOOLEAN,
-    visit_date DATE
+    visit_date VARCHAR(255)
     
 
 );

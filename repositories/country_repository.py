@@ -49,13 +49,3 @@ def update(country):
     values = [country.name, country.continent.id, country.id]
     run_sql(sql, values)
 
-def countries_by_continent(continent):
-    countries = []
-    sql = "SELECT * FROM countries WHERE continent_id = %s"
-    values = [continent.id]
-    results = run_sql(sql, values)
-
-    for row in results:
-        country = Country(row['name'], continent, row['id'])
-        countries.append(country)
-    return countries

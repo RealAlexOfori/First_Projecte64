@@ -20,11 +20,6 @@ def countries():
     continents = continent_repo.select_all()
     return render_template("countries/index.html", all_countries = countries, all_continents = continents )
 
-@countries_blueprint.route("/countries/new")
-def new_country():
-    continents = continent_repo.select_all()
-    return render_template("countries/new.html", all_continents = continents)
-
 @countries_blueprint.route("/countries", methods=['POST'])
 def create_country():
     country_name = request.form['name']
@@ -32,7 +27,6 @@ def create_country():
     country = Country(country_name, continent)
     country_repo.save(country)
     return redirect('/countries')
-
 
 @countries_blueprint.route("/countries/<id>/edit")
 def edit_country(id):

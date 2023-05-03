@@ -1,5 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Edit My Country {{country.name}}</h1>
+<form action="/countries/{{country.id}}" method="post"> 
+    <label for="continent">Continent</label>
+    <select name="continent_id" id="continent"> 
+        {% for continent in all_continents %}
+           <option value="{{continent.id}}">{{continent.name}}</option> 
+        {% endfor %}
+    </select>
+    <div>
+        <label for="name">Country</label>
+       <input type="text" name="name" id="name" value="{{country.name}}">
+    </div>
+     <input type="submit" value="Edit Country ">
+</form>
 
 {% endblock %}

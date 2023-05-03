@@ -19,10 +19,6 @@ def continents():
     continents = continent_repo.select_all()
     return render_template("continents/index.html", all_continents = continents)
 
-@continents_blueprint.route("/continents/new")
-def new_continent():
-    return render_template("continents/new.html")
-
 @continents_blueprint.route("/continents", methods=['POST'])
 def create_continent():
     continent_name = request.form['name']
@@ -30,18 +26,10 @@ def create_continent():
     continent_repo.save(continent)
     return redirect('/continents')
 
-
 @continents_blueprint.route("/continents/<id>/edit")
 def edit_continent(id):
     selected_continent = continent_repo.select(id)
     return render_template("continents/edit.html", continent = selected_continent)
-
-@continents_blueprint.route("/continents/<id>", methods=['POST'])
-def update_continent(id):
-    name = request.form['name']
-    continent = Continent(name, id)
-    continent_repo.update(continent)
-    return redirect('/continents')
 
 @continents_blueprint.route("/continents/<id>/delete", methods=['POST'])
 def delete_continent(id):
